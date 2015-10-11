@@ -1,27 +1,25 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class GridManager : MonoBehaviour {
 	public GameObject tile;
+	public Text winText;
+
 	private int[,] grid;
 	private GameObject[,] tiles;
 
-
-
-	// Use this for initialization
+	
 	void Start () {
 		createGrid ();
 		createTiles ();
-
 	}
 	
-	// Update is called once per frame
 	void Update () {
 
 	
 	}
-
-
+	
 
 	private void createGrid() {
 		this.grid = new int[4,4];
@@ -96,6 +94,7 @@ public class GridManager : MonoBehaviour {
 			}
 		}
 		Debug.Log (gridToString());
+		checkWin ();
 	}
 
 	public void moveLeft(int row, int col) {
@@ -105,6 +104,7 @@ public class GridManager : MonoBehaviour {
 				updateTiles();
 			}
 		}
+		checkWin ();
 	}
 
 	public void moveUp(int row, int col) {
@@ -115,6 +115,7 @@ public class GridManager : MonoBehaviour {
 
 			}
 		}
+		checkWin ();
 	}
 
 	public void moveDown(int row, int col) {
@@ -125,7 +126,23 @@ public class GridManager : MonoBehaviour {
 
 			}
 		}
+		checkWin ();
+	}
 
+	public void checkWin() {
+		bool isWin = true;
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 4; j++) {
+				if (grid[i,j] != (i*4 + j + 1)) {
+					isWin = false;
+					break;
+				}
+			}
+		}
+
+		if (isWin) {
+			winText.enabled = true;
+		}
 	}
 
 	private void swap(int rowA, int colA, int rowB, int colB) {
