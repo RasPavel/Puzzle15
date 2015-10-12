@@ -10,7 +10,6 @@ public class InputManager : MonoBehaviour {
 	void OnMouseDown() {
 		Vector3 mousePos = Input.mousePosition;
 		dragBeginPos = Camera.main.ScreenToWorldPoint(mousePos);
-		Debug.Log(dragBeginPos.x + " " + dragBeginPos.y + " " + dragBeginPos.z);
 	}
 
 	void OnMouseUp() {
