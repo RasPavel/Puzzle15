@@ -133,7 +133,7 @@ public class GridManager : MonoBehaviour {
 		bool isWin = true;
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
-				if (grid[i,j] != (i*4 + j + 1)) {
+				if ((grid[i,j] != 0) && (grid[i,j] != i*4 + j + 1)) {
 					isWin = false;
 					break;
 				}
