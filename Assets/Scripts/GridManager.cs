@@ -23,33 +23,34 @@ public class GridManager : MonoBehaviour {
 		shuffle(ar);
 
 		int N = 0;
-		for (var i = 0; i < ar.Length; i++) {
+		for (int i = 0; i < ar.Length; i++) {
 			int invers_number = 0;
 			if (ar[i] == 0) {
-				N += i+1;
+				N += i / 4;
 				continue;
 			}
-			for (var j = i + 1; j < ar.Length; j++) {
+			for (int j = i + 1; j < ar.Length; j++) {
 				if ((ar[i] < ar[j]) && (ar[j] != 0)) 	invers_number++;
 			}
 			N += invers_number;
 		}
+
 		if (N % 2 == 1) {
 			//permutation is unsolvable; we must swap any two numbers
 			if (ar[0] == 0 || ar[1] == 0) {
-				var temp = ar[2];
+				int temp = ar[2];
 				ar[2] = ar[3];
 				ar[3] = temp;
 			} else {
-				var temp = ar[0];
+				int temp = ar[0];
 				ar[0] = ar[1];
 				ar[1] = temp;
 			}
 		}
 
 
-		for (var i = 0; i < 4; i++) {
-			for (var j = 0; j < 4; j++) {
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 4; j++) {
 				if (grid[i,j] != 0) {
 				}
 				grid [i, j] = ar [i * 4 + j];		
@@ -157,9 +158,9 @@ public class GridManager : MonoBehaviour {
 		int rows = grid.GetLength(0);
 		int cols = grid.GetLength (1);
 		string result = "[";
-		for (var i = 0; i < rows; i++) {
+		for (int i = 0; i < rows; i++) {
 			result += "{";
-			for (var j = 0; j < cols; j++) {
+			for (int j = 0; j < cols; j++) {
 				result += grid[i,j] + " ";
 			}
 			result += "}";
@@ -169,9 +170,9 @@ public class GridManager : MonoBehaviour {
 	}
 
 	private void shuffle(int[] a) {
-		for (var i = a.Length - 1; i > 0; i--) {
-			var r = Random.Range (0, i);
-			var temp = a [i];
+		for (int i = a.Length - 1; i > 0; i--) {
+			int r = Random.Range (0, i);
+			int temp = a [i];
 			a [i] = a [r];
 			a [r] = temp;
 		}
